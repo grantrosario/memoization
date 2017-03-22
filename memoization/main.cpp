@@ -7,9 +7,28 @@
 //
 
 #include <iostream>
+#include <stdio.h>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+using namespace std;
+
+long int fib(int n, long int memo[]) {
+    if (n <= 0) return 0;
+    else if (n == 1) return 1;
+    else if (memo[n] > 0) return memo[n];
+    
+    memo[n] = fib(n - 1, memo) + fib(n - 2, memo);
+    return memo[n];
+}
+
+
+int main() {
+    
+    int n = 50;
+    long int memo[51] = {};
+    for (int i = 0; i < n; i++) {
+        printf("%d : %ld\n", i, fib(i, memo));
+    }
+    printf("\n");
+    
+    
 }
